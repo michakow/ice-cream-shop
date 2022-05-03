@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { from } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { from, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,5 +15,14 @@ export class AuthService {
 
   logout() {
     return from(this.auth.signOut());
+  }
+
+  isAuth() {
+    return this.auth.authState.pipe(
+      map((user) => {
+        if (user) return true;
+        else return false;
+      })
+    );
   }
 }
