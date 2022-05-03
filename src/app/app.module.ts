@@ -19,9 +19,11 @@ import { userReducer } from './store/user';
 import { HttpClientModule } from '@angular/common/http';
 import { authReducer } from './store/auth';
 import { HomeComponent } from './home/home.component';
+import { AdminComponent } from './admin/admin.component';
+import { ClientComponent } from './client/client.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginPanelComponent, HomeComponent],
+  declarations: [AppComponent, LoginPanelComponent, HomeComponent, AdminComponent, ClientComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
