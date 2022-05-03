@@ -18,9 +18,10 @@ import { AppState } from './store/app.state';
 import { userReducer } from './store/user';
 import { HttpClientModule } from '@angular/common/http';
 import { authReducer } from './store/auth';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginPanelComponent],
+  declarations: [AppComponent, LoginPanelComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
