@@ -2,8 +2,6 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
-import { AuthService } from '../auth.service';
-import { User } from '../models/user.model';
 import { UserService } from '../user.service';
 import { FormLoginService } from './form-login.service';
 
@@ -25,7 +23,6 @@ export class LoginPanelComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.user$ = this.userService.auth$;
     this.loginForm = this.formLoginService.createForm();
   }
 

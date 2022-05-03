@@ -19,10 +19,6 @@ export class UserService {
     private db: AngularFirestore
   ) {}
 
-  public get auth$() {
-    return this.store.select((state) => state.auth.isAuth);
-  }
-
   signIn(username: string, password: string) {
     return this.authService.login(username, password).pipe(
       catchError((err: HttpErrorResponse | FirebaseError) => of(err)),
@@ -43,6 +39,9 @@ export class UserService {
             res: res,
           };
         }
+      }),
+      tap((res) => {
+        if (res.error === null) this.setUserData(res.res.user!.uid);
       })
     );
   }
