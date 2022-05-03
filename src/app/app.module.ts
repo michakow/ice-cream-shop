@@ -17,6 +17,7 @@ import { StoreModule } from '@ngrx/store';
 import { AppState } from './store/app.state';
 import { userReducer } from './store/user';
 import { HttpClientModule } from '@angular/common/http';
+import { authReducer } from './store/auth';
 
 @NgModule({
   declarations: [AppComponent, LoginPanelComponent],
@@ -29,6 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     StoreModule.forRoot<AppState>({
       user: userReducer,
+      auth: authReducer,
     }),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
