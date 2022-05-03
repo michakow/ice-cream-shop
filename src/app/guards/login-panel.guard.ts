@@ -11,15 +11,15 @@ import { AuthService } from '../auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class LoginPanelGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(): Observable<boolean> {
     return this.authService.isAuth().pipe(
       map((isAuth) => {
-        if (isAuth) return true;
+        if (!isAuth) return true;
         else {
-          this.router.navigate(['login']);
+          this.router.navigate(['home']);
           return false;
         }
       })

@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { User } from '../models/user.model';
@@ -19,7 +20,8 @@ export class LoginPanelComponent implements OnInit {
 
   constructor(
     public userService: UserService,
-    private formLoginService: FormLoginService
+    private formLoginService: FormLoginService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -42,7 +44,7 @@ export class LoginPanelComponent implements OnInit {
       )
       .subscribe((res) => {
         if (res.error === null) {
-          this.userService.setUserData(res.res.user!.uid);
+          this.router.navigate(['home']);
           console.log('log in');
         }
       });
