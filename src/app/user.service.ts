@@ -1,14 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Store } from '@ngrx/store';
 import { FirebaseError } from 'firebase/app';
-import { catchError, map, Observable, of, switchMap, tap } from 'rxjs';
+import { catchError, map, of, tap } from 'rxjs';
 import { AuthService } from './auth.service';
 import { User } from './models/user.model';
 import { AppState } from './store/app.state';
-import { AuthActions } from './store/auth';
 import { UserActions } from './store/user';
 
 @Injectable({
@@ -18,17 +16,8 @@ export class UserService {
   constructor(
     private authService: AuthService,
     private store: Store<AppState>,
-    private db: AngularFirestore,
-    private afAuth: AngularFireAuth
-  ) {
-    this.afAuth.authState.subscribe((user) => {
-      if (user) this.store.dispatch(AuthActions.signIn());
-      else this.store.dispatch(AuthActions.signOut());
-      this.store
-        .select((state) => state.user.displayName)
-        .subscribe(console.log);
-    });
-  }
+    private db: AngularFirestore
+  ) {}
 
   public get auth$() {
     return this.store.select((state) => state.auth.isAuth);

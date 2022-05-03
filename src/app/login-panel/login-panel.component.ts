@@ -49,9 +49,4 @@ export class LoginPanelComponent implements OnInit {
         }
       });
   }
-
-  logout() {
-    console.log('log out');
-    this.userService.logOut().subscribe(console.log);
-  }
 }
