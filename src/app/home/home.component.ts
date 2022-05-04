@@ -1,5 +1,4 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserService } from '../user.service';
 
@@ -10,16 +9,10 @@ import { UserService } from '../user.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
-  username$!: Observable<string>;
   role$!: Observable<string>;
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.username$ = this.userService.getUserName();
     this.role$ = this.userService.getUserRole();
-  }
-
-  logout() {
-    this.userService.logOut().subscribe(() => this.router.navigate(['login']));
   }
 }

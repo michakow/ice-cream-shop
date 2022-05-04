@@ -1,11 +1,9 @@
 <app-header></app-header>
-username: {{ username$ | async }}
-role: {{ role$ | async }}
+<ng-container *ngIf="role$ | async as role; else spinner">
+  <app-admin *ngIf="role === 'admin'"></app-admin>
+  <app-client *ngIf="role === 'client'"></app-client>
+</ng-container>
 
-<button (click)="logout()">logout</button>
-
-<app-admin *ngIf="(role$ | async) === 'admin'; else client"></app-admin>
-
-<ng-template #client>
-  <app-client></app-client>
+<ng-template #spinner>
+  <mat-spinner diameter="100" class="spinner"></mat-spinner>
 </ng-template>
