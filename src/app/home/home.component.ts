@@ -11,10 +11,12 @@ import { UserService } from '../user.service';
 })
 export class HomeComponent implements OnInit {
   username$!: Observable<string>;
+  role$!: Observable<string>;
   constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     this.username$ = this.userService.getUserName();
+    this.role$ = this.userService.getUserRole();
   }
 
   logout() {

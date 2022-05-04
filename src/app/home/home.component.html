@@ -1,4 +1,11 @@
-<p>home works!</p>
-{{ username$ | async }}
+<app-header></app-header>
+username: {{ username$ | async }}
+role: {{ role$ | async }}
 
 <button (click)="logout()">logout</button>
+
+<app-admin *ngIf="(role$ | async) === 'admin'; else client"></app-admin>
+
+<ng-template #client>
+  <app-client></app-client>
+</ng-template>
