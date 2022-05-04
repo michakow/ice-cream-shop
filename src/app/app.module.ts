@@ -21,9 +21,10 @@ import { authReducer } from './store/auth';
 import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { ClientComponent } from './client/client.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginPanelComponent, HomeComponent, AdminComponent, ClientComponent],
+  declarations: [AppComponent, LoginPanelComponent, HomeComponent, AdminComponent, ClientComponent, HeaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
