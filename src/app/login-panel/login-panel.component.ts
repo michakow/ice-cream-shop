@@ -1,4 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
@@ -19,7 +24,8 @@ export class LoginPanelComponent implements OnInit {
   constructor(
     public userService: UserService,
     private formLoginService: FormLoginService,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +42,7 @@ export class LoginPanelComponent implements OnInit {
         tap((res) => {
           if (res.error === 'Zły login lub hasło.') {
             this.badLoginData = true;
+            this.cdr.detectChanges();
           }
         })
       )
