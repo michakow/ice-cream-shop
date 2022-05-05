@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable, tap } from 'rxjs';
+import { tap } from 'rxjs';
 import { UserService } from '../user.service';
 import { FormLoginService } from './form-login.service';
 
@@ -19,7 +19,6 @@ import { FormLoginService } from './form-login.service';
 export class LoginPanelComponent implements OnInit {
   loginForm!: FormGroup;
   badLoginData: boolean = false;
-  user$!: Observable<boolean>;
 
   constructor(
     public userService: UserService,
@@ -48,8 +47,8 @@ export class LoginPanelComponent implements OnInit {
       )
       .subscribe((res) => {
         if (res.error === null) {
+          this.userService.setUserID(res.res.user!.uid);
           this.router.navigate(['home']);
-          console.log('log in');
         }
       });
   }

@@ -7,6 +7,7 @@ import { catchError, map, of, tap } from 'rxjs';
 import { AuthService } from './auth.service';
 import { User } from './models/user.model';
 import { AppState } from './store/app.state';
+import { AuthActions } from './store/auth';
 import { UserActions } from './store/user';
 
 @Injectable({
@@ -18,6 +19,7 @@ export class UserService {
     private store: Store<AppState>,
     private db: AngularFirestore
   ) {}
+  private userID!: string;
 
   signIn(username: string, password: string) {
     return this.authService.login(username, password).pipe(
@@ -41,7 +43,9 @@ export class UserService {
         }
       }),
       tap((res) => {
-        if (res.error === null) this.setUserData(res.res.user!.uid);
+        if (res.error === null) {
+          this.store.dispatch(AuthActions.signIn());
+        }
       })
     );
   }
@@ -49,27 +53,42 @@ export class UserService {
   logOut() {
     return this.authService.logout().pipe(
       tap(() => {
+        this.store.dispatch(AuthActions.signOut());
         this.store.dispatch(UserActions.clearUser());
       })
     );
   }
 
-  setUserData(userID: string) {
-    this.db
-      .doc<User>(`users/${userID}`)
+  setUserData() {
+    return this.db
+      .doc<User>(`users/${this.userID}`)
       .valueChanges()
-      .subscribe((data) => {
-        if (data)
-          this.store.dispatch(
-            UserActions.setUser({
-              uid: data.uid,
-              displayName: data.displayName,
-              email: data.email,
-              role: data.role,
-              favoriteFlavors: data.favoriteFlavors,
-            })
-          );
-      });
+      .pipe(
+        tap((data) => {
+          if (data)
+            this.store.dispatch(
+              UserActions.setUser({
+                uid: data.uid,
+                displayName: data.displayName,
+                email: data.email,
+                role: data.role,
+                favoriteFlavors: data.favoriteFlavors,
+              })
+            );
+        })
+      );
+  }
+
+  isAuth() {
+    return this.store.select((state) => state.auth.isAuth);
+  }
+
+  getUserID() {
+    return this.userID;
+  }
+
+  setUserID(id: string) {
+    this.userID = id;
   }
 
   getUserName() {
