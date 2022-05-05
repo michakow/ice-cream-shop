@@ -23,6 +23,7 @@ import { AdminComponent } from './admin/admin.component';
 import { ClientComponent } from './client/client.component';
 import { HeaderComponent } from './header/header.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ClientListComponent } from './client-list/client-list.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     AdminComponent,
     ClientComponent,
     HeaderComponent,
+    ClientListComponent,
   ],
   imports: [
     BrowserModule,
