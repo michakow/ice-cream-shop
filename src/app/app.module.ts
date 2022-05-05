@@ -22,9 +22,17 @@ import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { ClientComponent } from './client/client.component';
 import { HeaderComponent } from './header/header.component';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
-  declarations: [AppComponent, LoginPanelComponent, HomeComponent, AdminComponent, ClientComponent, HeaderComponent],
+  declarations: [
+    AppComponent,
+    LoginPanelComponent,
+    HomeComponent,
+    AdminComponent,
+    ClientComponent,
+    HeaderComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -39,6 +47,10 @@ import { HeaderComponent } from './header/header.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    StoreDevtoolsModule.instrument({
+      logOnly: environment.production,
+      autoPause: true,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
