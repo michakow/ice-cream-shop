@@ -4,3 +4,37 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.nav {
+  display: flex;
+  margin: 2rem auto;
+  width: 700px;
+  justify-content: space-evenly;
+}
+
+.example-ripple-container {
+  cursor: pointer;
+  text-align: center;
+
+  width: 200px;
+  height: 100px;
+  line-height: 100px;
+
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.item-active {
+  font-weight: bold;
+  font-size: 1.2rem;
+  background-color: #ffc000;
+}
+
+a {
+  color: unset;
+  text-decoration: none;
+}
