@@ -1,11 +1,9 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import {
-  AngularFirestore,
-  AngularFirestoreDocument,
-} from '@angular/fire/compat/firestore';
-import { switchMap, tap } from 'rxjs';
-import { AuthService } from '../auth.service';
+import { FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
+import { ClientListService } from './client-list.service';
+import { FormAddClientService } from './form-add-client.service';
 
 @Component({
   selector: 'app-client-list',
@@ -14,31 +12,26 @@ import { User } from '../models/user.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClientListComponent implements OnInit {
-  constructor(private authService: AuthService, private db: AngularFirestore) {}
+  userList$!: Observable<User[]>;
+  addClientForm!: FormGroup;
 
-  ngOnInit(): void {}
+  constructor(
+    private clientListService: ClientListService,
+    private formAddClientService: FormAddClientService
+  ) {}
 
-  addUser() {
-    this.authService
-      .createUser('alan.palot@icecream.com', 'zaq1@WSX')
-      .pipe(
-        switchMap((user) =>
-          this.db.doc<User>(`users/${user.user!.uid}`).set(
-            {
-              uid: user.user!.uid,
-              email: 'alan.palot@icecream.com',
-              displayName: 'Alan Palot',
-              role: 'user',
-              favoriteFlavors: ['czekolada'],
-            },
-            { merge: true }
-          )
-        )
-      )
-      .subscribe();
+  ngOnInit(): void {
+    this.userList$ = this.clientListService.getClients();
+    this.addClientForm = this.formAddClientService.createForm();
   }
 
-  getUsers() {
-    this.db.collection('users').valueChanges().subscribe(console.log);
+  submit() {
+    this.addClientForm.markAllAsTouched();
+    const { firstName, lastName } = this.addClientForm.value;
+    if (this.addClientForm.invalid) return;
+    this.clientListService.addUser(firstName, lastName);
+    this.addClientForm.reset();
+    this.addClientForm.controls['firstName'].setErrors(null);
+    this.addClientForm.controls['lastName'].setErrors(null);
   }
 }
