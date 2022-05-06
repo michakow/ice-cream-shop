@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { ClientListComponent } from './client-list/client-list.component';
 import { ClientComponent } from './client/client.component';
+import { FlavorListAdminComponent } from './flavor-list-admin/flavor-list-admin.component';
 import { AdminRoleGuard } from './guards/admin-role.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginPanelGuard } from './guards/login-panel.guard';
@@ -32,7 +33,7 @@ const routes: Routes = [
           },
           {
             path: 'flavors',
-            component: AdminComponent,
+            component: FlavorListAdminComponent,
           },
           {
             path: 'orders',
