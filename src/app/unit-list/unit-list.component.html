@@ -1,0 +1,28 @@
+<form [formGroup]="addUnitForm" (ngSubmit)="submit()" class="example-form">
+  <div>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Pojemność w [ml]</mat-label>
+      <input type="number" min="1" matInput formControlName="unitValue" />
+    </mat-form-field>
+  </div>
+  <button mat-raised-button color="primary" [disabled]="addUnitForm.invalid">
+    Dodaj nową pojemność
+  </button>
+</form>
+
+<mat-list role="list" class="list">
+  <mat-list-item role="listitem">
+    <div class="items heading">
+      <span>Pojemności lodów</span>
+    </div>
+  </mat-list-item>
+  <mat-list-item
+    *ngFor="let item of unitList$ | async"
+    role="listitem"
+    class="items"
+  >
+    <div class="items">
+      <span>{{ item.value }} {{ item.unitName }}</span>
+    </div>
+  </mat-list-item>
+</mat-list>

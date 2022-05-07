@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   adminNav: NavItem[] = [
     { route: 'clients', name: 'Lista klientów' },
     { route: 'flavors', name: 'Lista smaków' },
+    { route: 'units', name: 'Lista pojemności' },
     { route: 'orders', name: 'Lista zamówień' },
   ];
   clientNav: NavItem[] = [
