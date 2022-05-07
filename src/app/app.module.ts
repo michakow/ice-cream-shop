@@ -25,6 +25,7 @@ import { HeaderComponent } from './header/header.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ClientListComponent } from './client-list/client-list.component';
 import { FlavorListAdminComponent } from './flavor-list-admin/flavor-list-admin.component';
+import { UnitListComponent } from './unit-list/unit-list.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { FlavorListAdminComponent } from './flavor-list-admin/flavor-list-admin.
     HeaderComponent,
     ClientListComponent,
     FlavorListAdminComponent,
+    UnitListComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,7 @@ import { LoginPanelGuard } from './guards/login-panel.guard';
 import { UserRoleGuard } from './guards/user-role.guard';
 import { HomeComponent } from './home/home.component';
 import { LoginPanelComponent } from './login-panel/login-panel.component';
+import { UnitListComponent } from './unit-list/unit-list.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
             component: FlavorListAdminComponent,
           },
           {
+            path: 'units',
+            component: UnitListComponent,
+          },
+          {
             path: 'orders',
             component: AdminComponent,
           },
@@ -60,7 +65,8 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'login',
+    // redirectTo: 'login',
+    component: UnitListComponent,
     pathMatch: 'full',
   },
   {
