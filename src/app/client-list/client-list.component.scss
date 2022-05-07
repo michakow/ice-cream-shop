@@ -1,0 +1,33 @@
+.list {
+  width: 500px;
+  margin: 0 auto;
+  background-color: palevioletred;
+  border-radius: 10px;
+}
+
+.items {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.heading {
+  font-weight: bold;
+}
+
+.example-form {
+  margin: 3rem auto 2rem;
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  text-align: right;
+
+  & > div {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.example-full-width {
+  width: 48%;
+}

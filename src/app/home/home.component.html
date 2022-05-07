@@ -1,19 +1,19 @@
 <app-header></app-header>
-{{user$ | async | json}}
-<ng-container *ngIf="role$ | async as role; else spinner">
-  <button (click)="nav()">nav</button>
-  <div class="nav">
-    <ng-container *ngIf="role === 'admin'">
-      <ng-container *ngFor="let item of adminNav">
-        <a [routerLink]="['admin', item.route]" routerLinkActive="item-active"><div matRipple [matRippleCentered]="true" [matRippleDisabled]="false" [matRippleUnbounded]="false" class="example-ripple-container mat-elevation-z4">{{item.name}}</div></a>
+<ng-container *ngIf="user$ | async; else spinner">
+  <ng-container *ngIf="role$ | async as role">
+    <div class="nav">
+      <ng-container *ngIf="role === 'admin'">
+        <ng-container *ngFor="let item of adminNav">
+          <a [routerLink]="['admin', item.route]" routerLinkActive="item-active"><div matRipple [matRippleCentered]="true" [matRippleDisabled]="false" [matRippleUnbounded]="false" class="example-ripple-container mat-elevation-z4">{{item.name}}</div></a>
+        </ng-container>
       </ng-container>
-    </ng-container>
-    <ng-container *ngIf="role === 'user'">
-      <ng-container *ngFor="let item of clientNav">
-        <a [routerLink]="['client', item.route]" routerLinkActive="item-active"><div matRipple [matRippleCentered]="true" [matRippleDisabled]="false" [matRippleUnbounded]="false" class="example-ripple-container mat-elevation-z4">{{item.name}}</div></a>
+      <ng-container *ngIf="role === 'user'">
+        <ng-container *ngFor="let item of clientNav">
+          <a [routerLink]="['client', item.route]" routerLinkActive="item-active"><div matRipple [matRippleCentered]="true" [matRippleDisabled]="false" [matRippleUnbounded]="false" class="example-ripple-container mat-elevation-z4">{{item.name}}</div></a>
+        </ng-container>
       </ng-container>
-    </ng-container>
-  </div>
+    </div>
+  </ng-container>
 </ng-container>
 <router-outlet></router-outlet>
 
