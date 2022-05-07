@@ -10,6 +10,7 @@ import { LoginPanelGuard } from './guards/login-panel.guard';
 import { UserRoleGuard } from './guards/user-role.guard';
 import { HomeComponent } from './home/home.component';
 import { LoginPanelComponent } from './login-panel/login-panel.component';
+import { OrderListComponent } from './order-list/order-list.component';
 import { UnitListComponent } from './unit-list/unit-list.component';
 
 const routes: Routes = [
@@ -42,7 +43,7 @@ const routes: Routes = [
           },
           {
             path: 'orders',
-            component: AdminComponent,
+            component: OrderListComponent,
           },
         ],
       },
@@ -66,7 +67,7 @@ const routes: Routes = [
   {
     path: '',
     // redirectTo: 'login',
-    component: UnitListComponent,
+    component: OrderListComponent,
     pathMatch: 'full',
   },
   {
