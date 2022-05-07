@@ -5,6 +5,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRippleModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatCardModule } from '@angular/material/card';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -13,6 +15,8 @@ const MaterialComponents = [
   MatRippleModule,
   MatListModule,
   MatInputModule,
+  MatExpansionModule,
+  MatCardModule,
 ];
 
 @NgModule({

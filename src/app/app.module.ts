@@ -26,6 +26,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ClientListComponent } from './client-list/client-list.component';
 import { FlavorListAdminComponent } from './flavor-list-admin/flavor-list-admin.component';
 import { UnitListComponent } from './unit-list/unit-list.component';
+import { OrderListComponent } from './order-list/order-list.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { UnitListComponent } from './unit-list/unit-list.component';
     ClientListComponent,
     FlavorListAdminComponent,
     UnitListComponent,
+    OrderListComponent,
   ],
   imports: [
     BrowserModule,
