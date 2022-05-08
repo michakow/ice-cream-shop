@@ -1,5 +1,6 @@
 .list {
-  width: 500px;
+  width: 80%;
+  max-width: 500px;
   margin: 0 auto;
   background-color: palevioletred;
   border-radius: 10px;
@@ -7,6 +8,7 @@
 
 .items {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   justify-content: space-between;
 }
@@ -19,7 +21,7 @@
   margin: 3rem auto 2rem;
   min-width: 150px;
   max-width: 500px;
-  width: 100%;
+  width: 80%;
   text-align: right;
 
   & > div {
