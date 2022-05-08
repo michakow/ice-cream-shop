@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { ClientListComponent } from './client-list/client-list.component';
+import { ClientOrderComponent } from './client-order/client-order.component';
 import { ClientComponent } from './client/client.component';
 import { FlavorListAdminComponent } from './flavor-list-admin/flavor-list-admin.component';
 import { FlavorListClientComponent } from './flavor-list-client/flavor-list-client.component';
@@ -59,7 +60,7 @@ const routes: Routes = [
           },
           {
             path: 'order',
-            component: ClientComponent,
+            component: ClientOrderComponent,
           },
         ],
       },
@@ -68,7 +69,7 @@ const routes: Routes = [
   {
     path: '',
     // redirectTo: 'login',
-    component: FlavorListClientComponent,
+    component: ClientOrderComponent,
     pathMatch: 'full',
   },
   {

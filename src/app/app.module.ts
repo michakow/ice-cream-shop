@@ -28,6 +28,7 @@ import { FlavorListAdminComponent } from './flavor-list-admin/flavor-list-admin.
 import { UnitListComponent } from './unit-list/unit-list.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { FlavorListClientComponent } from './flavor-list-client/flavor-list-client.component';
+import { ClientOrderComponent } from './client-order/client-order.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { FlavorListClientComponent } from './flavor-list-client/flavor-list-clie
     UnitListComponent,
     OrderListComponent,
     FlavorListClientComponent,
+    ClientOrderComponent,
   ],
   imports: [
     BrowserModule,

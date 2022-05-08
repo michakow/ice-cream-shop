@@ -73,6 +73,7 @@ export class UserService {
                 email: data.email,
                 role: data.role,
                 favoriteFlavors: data.favoriteFlavors,
+                lastOrder: data.lastOrder,
               })
             );
         })
@@ -101,5 +102,9 @@ export class UserService {
 
   getUserFavoriteFlavors() {
     return this.store.select((state) => state.user.favoriteFlavors);
+  }
+
+  getLastOrder() {
+    return this.store.select((state) => state.user.lastOrder);
   }
 }

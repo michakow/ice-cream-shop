@@ -3,7 +3,10 @@ export interface Order {
   date: string;
   order: {
     flavor: string;
-    unit: number;
+    unit: {
+      unitName: string;
+      value: number;
+    };
     amount: number;
   }[];
 }
