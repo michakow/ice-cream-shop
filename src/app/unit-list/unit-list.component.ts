@@ -2,7 +2,6 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Unit } from '../models/unit.model';
-import { FormAddUnitService } from './form-add-unit.service';
 import { UnitListService } from './unit-list.service';
 
 @Component({
@@ -15,14 +14,11 @@ export class UnitListComponent implements OnInit {
   unitList$!: Observable<Unit[]>;
   addUnitForm!: FormGroup;
 
-  constructor(
-    private unitListService: UnitListService,
-    private formAddUnitService: FormAddUnitService
-  ) {}
+  constructor(private unitListService: UnitListService) {}
 
   ngOnInit(): void {
     this.unitList$ = this.unitListService.getUnits();
-    this.addUnitForm = this.formAddUnitService.createForm();
+    this.addUnitForm = this.unitListService.createForm();
   }
 
   submit() {

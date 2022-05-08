@@ -5,7 +5,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatAccordion } from '@angular/material/expansion';
-import { format } from 'date-fns';
 import { Observable } from 'rxjs';
 import { Order } from '../models/order.model';
 import { OrderListService, OrderSummary } from './order-list.service';

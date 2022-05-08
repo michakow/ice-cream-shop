@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { map } from 'rxjs';
-import { AuthService } from '../auth.service';
+import { FormCreatorService } from '../form-creator.service';
 import { Unit } from '../models/unit.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UnitListService {
-  constructor(private authService: AuthService, private db: AngularFirestore) {}
+  constructor(
+    private db: AngularFirestore,
+    private formCreatorService: FormCreatorService
+  ) {}
 
-  addUnit(unitValue: number) {
+  public addUnit(unitValue: number) {
     const docID = this.generateDocID(28);
     this.db.doc<Unit>(`units/${docID}`).set(
       {
@@ -21,14 +24,14 @@ export class UnitListService {
     );
   }
 
-  getUnits() {
+  public getUnits() {
     return this.db
       .collection<Unit>('units')
       .valueChanges()
       .pipe(map((units) => units.sort((a, b) => a.value - b.value)));
   }
 
-  generateDocID(length: number) {
+  public generateDocID(length: number) {
     let result = '';
     const characters =
       'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -37,5 +40,9 @@ export class UnitListService {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
+  }
+
+  public createForm() {
+    return this.formCreatorService.createUnitForm();
   }
 }

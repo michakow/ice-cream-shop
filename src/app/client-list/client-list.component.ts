@@ -3,7 +3,6 @@ import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
 import { ClientListService } from './client-list.service';
-import { FormAddClientService } from './form-add-client.service';
 
 @Component({
   selector: 'app-client-list',
@@ -15,14 +14,11 @@ export class ClientListComponent implements OnInit {
   userList$!: Observable<User[]>;
   addClientForm!: FormGroup;
 
-  constructor(
-    private clientListService: ClientListService,
-    private formAddClientService: FormAddClientService
-  ) {}
+  constructor(private clientListService: ClientListService) {}
 
   ngOnInit(): void {
     this.userList$ = this.clientListService.getClients();
-    this.addClientForm = this.formAddClientService.createForm();
+    this.addClientForm = this.clientListService.createForm();
   }
 
   submit() {

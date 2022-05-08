@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { AuthService } from '../auth.service';
+import { FormCreatorService } from '../form-creator.service';
 import { Flavor } from '../models/flavor.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FlavorListAdminService {
-  constructor(private authService: AuthService, private db: AngularFirestore) {}
+  constructor(
+    private db: AngularFirestore,
+    private formCreatorService: FormCreatorService
+  ) {}
 
   addFlavor(name: string) {
     const docID = this.generateDocID(28);
@@ -32,5 +35,9 @@ export class FlavorListAdminService {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
+  }
+
+  public createForm() {
+    return this.formCreatorService.createFlavorForm();
   }
 }

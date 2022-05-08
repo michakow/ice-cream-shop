@@ -68,8 +68,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    // redirectTo: 'login',
-    component: ClientOrderComponent,
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
