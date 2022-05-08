@@ -1,8 +1,15 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { format } from 'date-fns';
+import { Observable, tap } from 'rxjs';
 import { FlavorListClientService } from '../flavor-list-client/flavor-list-client.service';
 import { Flavor } from '../models/flavor.model';
+import { Order } from '../models/order.model';
 import { Unit } from '../models/unit.model';
 import { UserService } from '../user.service';
 import { ClientOrderService } from './client-order.service';
@@ -20,12 +27,15 @@ export class ClientOrderComponent implements OnInit {
   orderForm!: FormGroup;
   unitList$!: Observable<Unit[]>;
   userName$!: Observable<string>;
+  lastOrder$!: Observable<Order | null>;
+  showOrder: boolean = true;
 
   constructor(
     private userSerivce: UserService,
     private flavorListClientService: FlavorListClientService,
     private clientOrderService: ClientOrderService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private cdr: ChangeDetectorRef
   ) {}
 
   get orderFormArray() {
@@ -42,6 +52,12 @@ export class ClientOrderComponent implements OnInit {
     this.orderForm = this.clientOrderService.createForm();
     this.unitList$ = this.clientOrderService.getUnits();
     this.userName$ = this.userSerivce.getUserName();
+    this.lastOrder$ = this.clientOrderService.getLastOrder().pipe(
+      tap((order) => {
+        if (order!.date === format(new Date(), 'yyyy-MM-dd'))
+          this.showOrder = false;
+      })
+    );
   }
 
   changeFlavorList() {
@@ -69,7 +85,13 @@ export class ClientOrderComponent implements OnInit {
   onSubmit(userName: string): void {
     this.orderForm.markAllAsTouched();
     if (this.orderForm.invalid) return;
-    console.log(this.orderForm.value, userName);
     this.clientOrderService.sendOrder(this.orderForm.value, userName);
+    this.showOrder = false;
+    this.cdr.detectChanges();
+  }
+
+  sendLastOrder(order: Order) {
+    this.clientOrderService.sendLastOrder(order);
+    this.showOrder = false;
   }
 }

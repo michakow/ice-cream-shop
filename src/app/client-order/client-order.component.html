@@ -1,4 +1,4 @@
-<div class="order-view">
+<div *ngIf="showOrder; else returnTomorrow" class="order-view">
   <div class="items-to-order">
     <button mat-raised-button color="primary" (click)="changeFlavorList()">
       Przełącz na {{ favoriteListSelected ? "wszystkie" : "ulubione" }} smaki
@@ -75,6 +75,26 @@
   </div>
 </div>
 
+<div class="last-order">
+  <p>Ostatnie zamówienie</p>
+  <ng-container *ngIf="lastOrder$ | async as lastOrder; else noLastOrder">
+    <p>Dnia {{ lastOrder.date }}</p>
+    <p *ngFor="let order of lastOrder.order">
+      {{ order.flavor }} {{ order.unit.value }} {{ order.unit.unitName }} x{{
+        order.amount
+      }}
+    </p>
+    <button
+      *ngIf="showOrder"
+      mat-raised-button
+      color="primary"
+      (click)="sendLastOrder(lastOrder)"
+    >
+      Zamów ponownie
+    </button>
+  </ng-container>
+</div>
+
 <ng-template #allFlavors>
   <mat-list role="list" class="list-container">
     <mat-list-item role="listitem">
@@ -99,4 +119,14 @@
 
 <ng-template #noOrder>
   <p>Nie wybrano jeszcze lodów do zamówienia.</p>
+</ng-template>
+
+<ng-template #noLastOrder>
+  <p>Brak zamówień</p>
+</ng-template>
+
+<ng-template #returnTomorrow>
+  <p class="return-tomorrow">
+    Tylko jedno zamówienie na dzień, zapraszamy jutro.
+  </p>
 </ng-template>

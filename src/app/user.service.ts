@@ -103,4 +103,8 @@ export class UserService {
   getUserFavoriteFlavors() {
     return this.store.select((state) => state.user.favoriteFlavors);
   }
+
+  getLastOrder() {
+    return this.store.select((state) => state.user.lastOrder);
+  }
 }
