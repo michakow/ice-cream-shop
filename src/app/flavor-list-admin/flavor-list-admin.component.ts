@@ -3,7 +3,6 @@ import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Flavor } from '../models/flavor.model';
 import { FlavorListAdminService } from './flavor-list-admin.service';
-import { FormAddFlavorService } from './form-add-flavor.service';
 
 @Component({
   selector: 'app-flavor-list-admin',
@@ -15,14 +14,11 @@ export class FlavorListAdminComponent implements OnInit {
   flavorList$!: Observable<Flavor[]>;
   addFlavorForm!: FormGroup;
 
-  constructor(
-    private flavorListService: FlavorListAdminService,
-    private formAddFlavorService: FormAddFlavorService
-  ) {}
+  constructor(private flavorListService: FlavorListAdminService) {}
 
   ngOnInit(): void {
     this.flavorList$ = this.flavorListService.getFlavors();
-    this.addFlavorForm = this.formAddFlavorService.createForm();
+    this.addFlavorForm = this.flavorListService.createForm();
   }
 
   submit() {

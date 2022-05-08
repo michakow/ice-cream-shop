@@ -34,8 +34,4 @@ export class HomeComponent implements OnInit {
     this.user$ = this.userService.setUserData();
     this.role$ = this.userService.getUserRole();
   }
-
-  nav() {
-    this.router.navigate(['home', 'client']);
-  }
 }

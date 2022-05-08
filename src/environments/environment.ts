@@ -13,6 +13,7 @@ export const environment = {
     messagingSenderId: '561269820096',
     appId: '1:561269820096:web:10e51a3921eaa4f3aefb25',
   },
+  defaultPassword: 'zaq1@WSX',
   production: false,
 };
 

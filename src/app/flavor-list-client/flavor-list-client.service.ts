@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Store } from '@ngrx/store';
 import { BehaviorSubject, tap } from 'rxjs';
 import { Flavor } from '../models/flavor.model';
 import { User } from '../models/user.model';
