@@ -73,6 +73,7 @@ export class UserService {
                 email: data.email,
                 role: data.role,
                 favoriteFlavors: data.favoriteFlavors,
+                lastOrder: data.lastOrder,
               })
             );
         })

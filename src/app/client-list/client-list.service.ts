@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { map, switchMap } from 'rxjs';
+import { map, switchMap, take } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { User } from '../models/user.model';
 
@@ -24,6 +24,10 @@ export class ClientListService {
               displayName: displayName,
               role: 'user',
               favoriteFlavors: [],
+              lastOrder: {
+                date: '',
+                orderID: '',
+              },
             },
             { merge: true }
           )
