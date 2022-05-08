@@ -1,0 +1,59 @@
+<mat-selection-list
+  #flavors
+  [multiple]="false"
+  *ngIf="flavorList$ | async as flavorList"
+  class="list-container"
+>
+  <div class="list">
+    <mat-list-item role="listitem">
+      <div class="items heading">
+        <span>Dostępne smaki lodów</span>
+      </div>
+    </mat-list-item>
+    <mat-list-option
+      *ngFor="let flavor of flavorList"
+      [value]="flavor.name"
+      class="items"
+    >
+      {{ flavor.name }}
+    </mat-list-option>
+  </div>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="addToFavorites(flavors.selectedOptions.selected[0].value)"
+    [disabled]="!flavors.selectedOptions.selected.length"
+  >
+    Dodaj do ulubionych
+  </button>
+</mat-selection-list>
+
+<mat-selection-list
+  #favorites
+  [multiple]="false"
+  *ngIf="favoriteList$ | async as favoriteList"
+  class="list-container"
+>
+  <div class="list">
+    <mat-list-item role="listitem">
+      <div class="items heading">
+        <span>Ulubione smaki lodów</span>
+      </div>
+    </mat-list-item>
+    <mat-list-option
+      *ngFor="let flavor of favoriteList"
+      [value]="flavor"
+      class="items"
+    >
+      {{ flavor }}
+    </mat-list-option>
+  </div>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="removeFromFavorites(favorites.selectedOptions.selected[0].value)"
+    [disabled]="!favorites.selectedOptions.selected.length"
+  >
+    Usuń z ulubionych
+  </button>
+</mat-selection-list>

@@ -15,4 +15,8 @@ export class AuthService {
   logout() {
     return from(this.auth.signOut());
   }
+
+  createUser(username: string, password: string) {
+    return from(this.auth.createUserWithEmailAndPassword(username, password));
+  }
 }

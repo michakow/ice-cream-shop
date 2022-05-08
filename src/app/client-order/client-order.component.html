@@ -1,0 +1,132 @@
+<div *ngIf="showOrder; else returnTomorrow" class="order-view">
+  <div class="items-to-order">
+    <button mat-raised-button color="primary" (click)="changeFlavorList()">
+      Przełącz na {{ favoriteListSelected ? "wszystkie" : "ulubione" }} smaki
+    </button>
+    <ng-container *ngIf="favoriteListSelected; else allFlavors">
+      <mat-list role="list" class="list-container">
+        <mat-list-item role="listitem">
+          <div class="items heading">
+            <span>Ulubione smaki</span>
+          </div>
+        </mat-list-item>
+        <mat-list-item
+          *ngFor="let flavor of favoriteList$ | async"
+          role="listitem"
+        >
+          <div class="items items-order">
+            <span>{{ flavor }}</span>
+            <button
+              mat-raised-button
+              color="accent"
+              (click)="addFlavorToOrder(flavor)"
+            >
+              Dodaj
+            </button>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </ng-container>
+  </div>
+
+  <div class="selected-items" *ngIf="userName$ | async as userName">
+    <p>Zamówienie na lody</p>
+    <form
+      [formGroup]="orderForm"
+      (ngSubmit)="onSubmit(userName)"
+      *ngIf="orderFormArray.length > 0; else noOrder"
+    >
+      <div formArrayName="order" class="order">
+        <ng-container *ngFor="let flavor of orderFormGroup; let index = index">
+          <div [formGroup]="flavor" class="order-item">
+            <label>
+              <span>{{ flavor.controls["flavor"].value }}</span>
+            </label>
+            <mat-form-field appearance="fill">
+              <mat-label>Pojemność</mat-label>
+              <mat-select formControlName="unit" required>
+                <mat-option>--</mat-option>
+                <mat-option
+                  *ngFor="let unit of unitList$ | async"
+                  [value]="unit"
+                >
+                  {{ unit.value }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Ilość</mat-label>
+              <input type="number" min="1" matInput formControlName="amount" />
+            </mat-form-field>
+            <button
+              *ngIf="orderFormArray.length > 0"
+              (click)="removeFlavor(index)"
+              type="button"
+            >
+              ❌
+            </button>
+          </div>
+        </ng-container>
+      </div>
+      <button mat-raised-button color="primary" [disabled]="!orderForm.valid">
+        Złóż zamówienie
+      </button>
+    </form>
+  </div>
+</div>
+
+<div class="last-order">
+  <p>Ostatnie zamówienie</p>
+  <ng-container *ngIf="lastOrder$ | async as lastOrder; else noLastOrder">
+    <p>Dnia {{ lastOrder.date }}</p>
+    <p *ngFor="let order of lastOrder.order">
+      {{ order.flavor }} {{ order.unit.value }} {{ order.unit.unitName }} x{{
+        order.amount
+      }}
+    </p>
+    <button
+      *ngIf="showOrder"
+      mat-raised-button
+      color="primary"
+      (click)="sendLastOrder(lastOrder)"
+    >
+      Zamów ponownie
+    </button>
+  </ng-container>
+</div>
+
+<ng-template #allFlavors>
+  <mat-list role="list" class="list-container">
+    <mat-list-item role="listitem">
+      <div class="items heading">
+        <span>Wszystkie smaki</span>
+      </div>
+    </mat-list-item>
+    <mat-list-item *ngFor="let flavor of flavorList$ | async" role="listitem">
+      <div class="items items-order">
+        <span>{{ flavor.name }}</span>
+        <button
+          mat-raised-button
+          color="accent"
+          (click)="addFlavorToOrder(flavor.name)"
+        >
+          Dodaj
+        </button>
+      </div>
+    </mat-list-item>
+  </mat-list>
+</ng-template>
+
+<ng-template #noOrder>
+  <p>Nie wybrano jeszcze lodów do zamówienia.</p>
+</ng-template>
+
+<ng-template #noLastOrder>
+  <p>Brak zamówień</p>
+</ng-template>
+
+<ng-template #returnTomorrow>
+  <p class="return-tomorrow">
+    Tylko jedno zamówienie na dzień, zapraszamy jutro.
+  </p>
+</ng-template>

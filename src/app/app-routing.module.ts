@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
+import { ClientListComponent } from './client-list/client-list.component';
+import { ClientOrderComponent } from './client-order/client-order.component';
 import { ClientComponent } from './client/client.component';
+import { FlavorListAdminComponent } from './flavor-list-admin/flavor-list-admin.component';
+import { FlavorListClientComponent } from './flavor-list-client/flavor-list-client.component';
 import { AdminRoleGuard } from './guards/admin-role.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginPanelGuard } from './guards/login-panel.guard';
 import { UserRoleGuard } from './guards/user-role.guard';
 import { HomeComponent } from './home/home.component';
 import { LoginPanelComponent } from './login-panel/login-panel.component';
+import { OrderListComponent } from './order-list/order-list.component';
+import { UnitListComponent } from './unit-list/unit-list.component';
 
 const routes: Routes = [
   {
@@ -27,15 +33,19 @@ const routes: Routes = [
         children: [
           {
             path: 'clients',
-            component: AdminComponent,
+            component: ClientListComponent,
           },
           {
             path: 'flavors',
-            component: AdminComponent,
+            component: FlavorListAdminComponent,
+          },
+          {
+            path: 'units',
+            component: UnitListComponent,
           },
           {
             path: 'orders',
-            component: AdminComponent,
+            component: OrderListComponent,
           },
         ],
       },
@@ -46,11 +56,11 @@ const routes: Routes = [
         children: [
           {
             path: 'flavors',
-            component: ClientComponent,
+            component: FlavorListClientComponent,
           },
           {
-            path: 'orders',
-            component: ClientComponent,
+            path: 'order',
+            component: ClientOrderComponent,
           },
         ],
       },
@@ -58,7 +68,8 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'login',
+    // redirectTo: 'login',
+    component: ClientOrderComponent,
     pathMatch: 'full',
   },
   {

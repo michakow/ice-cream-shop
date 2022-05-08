@@ -1,0 +1,28 @@
+<form [formGroup]="addClientForm" (ngSubmit)="submit()" class="example-form">
+  <div>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Imię</mat-label>
+      <input type="text" matInput formControlName="firstName">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Nazwisko</mat-label>
+      <input type="text" matInput formControlName="lastName">
+    </mat-form-field>
+  </div>
+  <button mat-raised-button color="primary"[disabled]="addClientForm.invalid" >Dodaj klienta</button>
+</form>
+
+<mat-list role="list" class="list">
+  <mat-list-item role="listitem">
+    <div class="items heading">
+      <span>Klient</span>
+      <span>Adres e-mail</span>
+    </div>
+  </mat-list-item>
+  <mat-list-item *ngFor="let item of userList$ | async" role="listitem">
+    <div class="items">
+      <span>{{item.displayName}}</span>
+      <span>{{item.email}}</span>
+    </div>
+  </mat-list-item>
+</mat-list>

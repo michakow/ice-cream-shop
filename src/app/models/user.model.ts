@@ -4,4 +4,8 @@ export interface User {
   email: string;
   role: string;
   favoriteFlavors: string[];
+  lastOrder: {
+    date: string;
+    orderID: string;
+  };
 }

@@ -1,0 +1,22 @@
+<form [formGroup]="addFlavorForm" (ngSubmit)="submit()" class="example-form">
+  <div>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Smak lodów</mat-label>
+      <input type="text" matInput formControlName="name">
+    </mat-form-field>
+  </div>
+  <button mat-raised-button color="primary" [disabled]="addFlavorForm.invalid" >Dodaj nowy smak</button>
+</form>
+
+<mat-list role="list" class="list">
+  <mat-list-item role="listitem">
+    <div class="items heading">
+      <span>Smaki lodów</span>
+    </div>
+  </mat-list-item>
+  <mat-list-item *ngFor="let item of flavorList$ | async" role="listitem" class="items">
+    <div class="items">
+      <span>{{item.name}}</span>
+    </div>
+  </mat-list-item>
+</mat-list>

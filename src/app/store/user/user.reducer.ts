@@ -8,6 +8,10 @@ const initialState: UserState = {
   uid: '',
   role: '',
   favoriteFlavors: [],
+  lastOrder: {
+    date: '',
+    orderID: '',
+  },
 };
 
 export const userReducer = createReducer(
@@ -20,6 +24,7 @@ export const userReducer = createReducer(
       uid: props.uid,
       role: props.role,
       favoriteFlavors: props.favoriteFlavors,
+      lastOrder: props.lastOrder,
     };
   }),
   on(UserActions.clearUser, (state) => {

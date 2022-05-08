@@ -1,0 +1,41 @@
+<div class="example-action-buttons">
+  <button mat-button (click)="accordion.openAll()">
+    Rozwiń wszystkie zamówienia
+  </button>
+  <button mat-button (click)="accordion.closeAll()">
+    Zwiń wszystkie zamówienial
+  </button>
+</div>
+<mat-accordion class="example-headers-align" multi>
+  <mat-expansion-panel *ngFor="let item of orderList$ | async">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <span class="client-name">{{ item.client }}</span>
+        <span class="order-date">Zamówienie z dnia {{ item.date }}</span>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="heading order-item">
+      <p>Smak lodów</p>
+      <p>Pojemność w [ml]</p>
+      <p>Ilość</p>
+    </div>
+    <div *ngFor="let order of item.order" class="order-item">
+      <p>{{ order.flavor }}</p>
+      <p>{{ order.unit.value }} {{ order.unit.unitName }}</p>
+      <p>{{ order.amount }}</p>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<mat-card class="summary">
+  <mat-card-title> Podsumowanie zamówień </mat-card-title>
+  <mat-card-subtitle>Zamówione dziś, do odbioru jutro</mat-card-subtitle>
+  <div class="heading summary-item">
+    <p>Smak lodów</p>
+    <p>Łącznie do wyprodukowania w [l]</p>
+  </div>
+  <div class="summary-item" *ngFor="let order of ordersSummary$ | async">
+    <p>{{ order.flavor }}</p>
+    <p>{{ order.amount / 1000 }} l</p>
+  </div>
+</mat-card>
