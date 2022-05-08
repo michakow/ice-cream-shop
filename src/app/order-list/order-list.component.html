@@ -21,7 +21,7 @@
     </div>
     <div *ngFor="let order of item.order" class="order-item">
       <p>{{ order.flavor }}</p>
-      <p>{{ order.unit }} ml</p>
+      <p>{{ order.unit.value }} {{ order.unit.unitName }}</p>
       <p>{{ order.amount }}</p>
     </div>
   </mat-expansion-panel>

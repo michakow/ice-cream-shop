@@ -45,7 +45,7 @@ export class OrderListService {
               return clientOrder.order.map((order) => {
                 return {
                   flavor: order.flavor,
-                  amount: order.amount * order.unit,
+                  amount: order.amount * order.unit.value,
                 };
               });
             })
