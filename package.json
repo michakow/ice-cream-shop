@@ -37,6 +37,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@types/jest": "^27.4.1",
     "@types/node": "^12.11.1",
+    "angular-cli-ghpages": "^1.0.0",
     "dotenv": "^16.0.0",
     "jest": "^27.5.1",
     "jest-preset-angular": "^11.1.2",
