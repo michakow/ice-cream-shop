@@ -4,6 +4,7 @@ import { map, switchMap } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { FormCreatorService } from '../form-creator.service';
 import { User } from '../models/user.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,7 @@ export class ClientListService {
     const email = `${firstName}.${lastName}@icecream.com`.toLowerCase();
     const displayName = `${firstName} ${lastName}`;
     this.authService
-      .createUser(email, 'zaq1@WSX')
+      .createUser(email, environment.defaultPassword)
       .pipe(
         switchMap((user) =>
           this.db.doc<User>(`users/${user.user!.uid}`).set(
