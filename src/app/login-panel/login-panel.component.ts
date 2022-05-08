@@ -7,8 +7,8 @@ import {
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
+import { FormCreatorService } from '../form-creator.service';
 import { UserService } from '../user.service';
-import { FormLoginService } from './form-login.service';
 
 @Component({
   selector: 'app-login-panel',
@@ -22,13 +22,13 @@ export class LoginPanelComponent implements OnInit {
 
   constructor(
     public userService: UserService,
-    private formLoginService: FormLoginService,
+    private formCreatorService: FormCreatorService,
     private router: Router,
     private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
-    this.loginForm = this.formLoginService.createForm();
+    this.loginForm = this.formCreatorService.createLoginForm();
   }
 
   submit() {
