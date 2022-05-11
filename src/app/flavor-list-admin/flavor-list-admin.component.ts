@@ -27,6 +27,6 @@ export class FlavorListAdminComponent implements OnInit {
     if (this.addFlavorForm.invalid) return;
     this.flavorListService.addFlavor(name);
     this.addFlavorForm.reset();
-    this.addFlavorForm.controls['name'].setErrors(null);
+    this.addFlavorForm.controls['name'].setValue(' ');
   }
 }
