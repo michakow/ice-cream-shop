@@ -24,10 +24,9 @@ export class ClientListComponent implements OnInit {
   submit() {
     this.addClientForm.markAllAsTouched();
     const { firstName, lastName } = this.addClientForm.value;
-    if (this.addClientForm.invalid) return;
     this.clientListService.addUser(firstName, lastName);
     this.addClientForm.reset();
-    this.addClientForm.controls['firstName'].setErrors(null);
-    this.addClientForm.controls['lastName'].setErrors(null);
+    this.addClientForm.controls['firstName'].setValue(' ');
+    this.addClientForm.controls['lastName'].setValue(' ');
   }
 }
