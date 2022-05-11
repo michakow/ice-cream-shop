@@ -27,6 +27,6 @@ export class UnitListComponent implements OnInit {
     if (this.addUnitForm.invalid) return;
     this.unitListService.addUnit(unitValue);
     this.addUnitForm.reset();
-    this.addUnitForm.controls['unitValue'].setErrors(null);
+    this.addUnitForm.controls['unitValue'].setValue(1);
   }
 }
