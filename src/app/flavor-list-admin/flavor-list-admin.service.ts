@@ -36,6 +36,7 @@ export class FlavorListAdminService {
       },
       { merge: true }
     );
+    this.toast.success('Dodano nowy smak', 'Smak dodany');
   }
 
   getFlavors() {

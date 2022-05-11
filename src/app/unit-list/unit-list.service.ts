@@ -33,6 +33,7 @@ export class UnitListService {
       },
       { merge: true }
     );
+    this.toast.success('Dodano nową pojemność', 'Pojemność dodana');
   }
 
   public getUnits() {
