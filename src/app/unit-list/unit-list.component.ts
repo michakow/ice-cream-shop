@@ -13,6 +13,7 @@ import { UnitListService } from './unit-list.service';
 export class UnitListComponent implements OnInit {
   unitList$!: Observable<Unit[]>;
   addUnitForm!: FormGroup;
+  blockButton: boolean = false;
 
   constructor(private unitListService: UnitListService) {}
 
@@ -22,9 +23,11 @@ export class UnitListComponent implements OnInit {
   }
 
   submit() {
+    this.blockButton = true;
     this.addUnitForm.markAllAsTouched();
     const { unitValue } = this.addUnitForm.value;
     if (this.addUnitForm.invalid) return;
+    setTimeout(() => (this.blockButton = false), 1000);
     this.unitListService.addUnit(unitValue);
     this.addUnitForm.reset();
     this.addUnitForm.controls['unitValue'].setValue(1);

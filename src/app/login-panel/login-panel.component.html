@@ -31,7 +31,7 @@
       Nie podano nazwy.
     </p>
   </label>
-  <button mat-raised-button color="primary" [disabled]="loginForm.invalid">
+  <button mat-raised-button color="primary" [disabled]="loginForm.invalid || blockButton">
     Zaloguj
   </button>
   <p *ngIf="badLoginData" class="bad-login-message">

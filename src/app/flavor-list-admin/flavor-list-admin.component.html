@@ -5,7 +5,7 @@
       <input type="text" matInput formControlName="name">
     </mat-form-field>
   </div>
-  <button mat-raised-button color="primary" [disabled]="addFlavorForm.invalid" >Dodaj nowy smak</button>
+  <button mat-raised-button color="primary" [disabled]="addFlavorForm.invalid || blockButton" >Dodaj nowy smak</button>
 </form>
 
 <mat-list role="list" class="list">

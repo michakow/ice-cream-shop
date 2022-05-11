@@ -13,6 +13,7 @@ import { ClientListService } from './client-list.service';
 export class ClientListComponent implements OnInit {
   userList$!: Observable<User[]>;
   addClientForm!: FormGroup;
+  blockButton: boolean = false;
 
   constructor(private clientListService: ClientListService) {}
 
@@ -22,9 +23,12 @@ export class ClientListComponent implements OnInit {
   }
 
   submit() {
+    this.blockButton = true;
     this.addClientForm.markAllAsTouched();
     const { firstName, lastName } = this.addClientForm.value;
     this.clientListService.addUser(firstName, lastName);
+    this.blockButton = true;
+    setTimeout(() => (this.blockButton = false), 1000);
     this.addClientForm.reset();
     this.addClientForm.controls['firstName'].setValue(' ');
     this.addClientForm.controls['lastName'].setValue(' ');

@@ -13,6 +13,7 @@ import { FlavorListAdminService } from './flavor-list-admin.service';
 export class FlavorListAdminComponent implements OnInit {
   flavorList$!: Observable<Flavor[]>;
   addFlavorForm!: FormGroup;
+  blockButton: boolean = false;
 
   constructor(private flavorListService: FlavorListAdminService) {}
 
@@ -22,9 +23,11 @@ export class FlavorListAdminComponent implements OnInit {
   }
 
   submit() {
+    this.blockButton = true;
     this.addFlavorForm.markAllAsTouched();
     const { name } = this.addFlavorForm.value;
     if (this.addFlavorForm.invalid) return;
+    setTimeout(() => (this.blockButton = false), 1000);
     this.flavorListService.addFlavor(name);
     this.addFlavorForm.reset();
     this.addFlavorForm.controls['name'].setValue(' ');

@@ -19,6 +19,7 @@ import { UserService } from '../user.service';
 export class LoginPanelComponent implements OnInit {
   loginForm!: FormGroup;
   badLoginData: boolean = false;
+  blockButton: boolean = false;
 
   constructor(
     public userService: UserService,
@@ -32,9 +33,11 @@ export class LoginPanelComponent implements OnInit {
   }
 
   submit() {
+    this.blockButton = true;
     this.loginForm.markAllAsTouched();
     const { login, password } = this.loginForm.value;
     if (this.loginForm.invalid) return;
+    setTimeout(() => (this.blockButton = false), 1000);
     this.userService
       .signIn(login, password)
       .pipe(

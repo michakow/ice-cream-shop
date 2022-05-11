@@ -5,7 +5,7 @@
       <input type="number" min="1" matInput formControlName="unitValue" />
     </mat-form-field>
   </div>
-  <button mat-raised-button color="primary" [disabled]="addUnitForm.invalid">
+  <button mat-raised-button color="primary" [disabled]="addUnitForm.invalid || blockButton">
     Dodaj nową pojemność
   </button>
 </form>

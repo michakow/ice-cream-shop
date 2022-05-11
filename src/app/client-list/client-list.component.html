@@ -9,7 +9,7 @@
       <input type="text" matInput formControlName="lastName">
     </mat-form-field>
   </div>
-  <button mat-raised-button color="primary"[disabled]="addClientForm.invalid" >Dodaj klienta</button>
+  <button mat-raised-button color="primary"[disabled]="addClientForm.invalid || blockButton" >Dodaj klienta</button>
 </form>
 
 <mat-list role="list" class="list">
