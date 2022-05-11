@@ -27,12 +27,12 @@ export class ClientListService {
       this.toast.error('Nie podano danych klienta', 'Błędne dane');
       return;
     }
-    const email = `${firstName}.${lastName}@icecream.com`.toLowerCase();
+    const email = `${formatFN}.${formatLN}@icecream.com`.toLowerCase();
     if (this.checkIfUserExist(email)) {
       this.toast.error('Klient o takich danych istnieje', 'Klient istnieje');
       return;
     }
-    const displayName = `${firstName} ${lastName}`;
+    const displayName = `${formatFN} ${formatLN}`;
     this.authService
       .createUser(email, environment.defaultPassword)
       .pipe(
