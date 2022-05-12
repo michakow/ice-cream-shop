@@ -26,12 +26,13 @@ export class FlavorListAdminService {
       this.toast.error('Nie podano żadnego smaku', 'Błędne dane');
       return;
     }
-    if (this.checkIfFlavorExist(formatName)) {
+    if (this.checkIfFlavorExist(formatName.toLowerCase())) {
       this.toast.error('Smak o takiej nazwie istnieje', 'Smak istnieje');
       return;
     }
     this.db.doc<Flavor>(`icecreams/${docID}`).set(
       {
+        id: docID,
         name: formatName,
       },
       { merge: true }
