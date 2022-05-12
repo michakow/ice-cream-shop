@@ -32,4 +32,8 @@ export class FlavorListAdminComponent implements OnInit {
     this.addFlavorForm.reset();
     this.addFlavorForm.controls['name'].setValue(' ');
   }
+
+  deleteFlavor(id: string) {
+    this.flavorListService.deleteFlavor(id);
+  }
 }

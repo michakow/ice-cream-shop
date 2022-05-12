@@ -23,6 +23,7 @@
     <div class="items">
       <span>{{item.displayName}}</span>
       <span>{{item.email}}</span>
+      <span (click)="deleteUser(item.uid)" class="delete-icon-client">❌</span>
     </div>
   </mat-list-item>
 </mat-list>

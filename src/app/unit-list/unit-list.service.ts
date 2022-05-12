@@ -28,12 +28,17 @@ export class UnitListService {
     }
     this.db.doc<Unit>(`units/${docID}`).set(
       {
+        id: docID,
         value: unitValue,
         unitName: 'ml',
       },
       { merge: true }
     );
     this.toast.success('Dodano nową pojemność', 'Pojemność dodana');
+  }
+
+  deleteUnit(id: string) {
+    this.db.doc<Unit>(`units/${id}`).delete();
   }
 
   public getUnits() {

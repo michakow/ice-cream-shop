@@ -32,4 +32,8 @@ export class UnitListComponent implements OnInit {
     this.addUnitForm.reset();
     this.addUnitForm.controls['unitValue'].setValue(1);
   }
+
+  deleteUnit(id: string) {
+    this.unitListService.deleteUnit(id);
+  }
 }

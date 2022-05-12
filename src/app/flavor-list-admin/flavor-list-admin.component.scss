@@ -9,6 +9,7 @@
   display: flex;
   width: 100%;
   justify-content: center;
+  position: relative;
 }
 
 .heading {
@@ -30,4 +31,12 @@
 
 .example-full-width {
   width: 50%;
+}
+
+.delete-icon {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
 }

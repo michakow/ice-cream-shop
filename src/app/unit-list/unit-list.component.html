@@ -24,5 +24,6 @@
     <div class="items">
       <span>{{ item.value }} {{ item.unitName }}</span>
     </div>
+    <span (click)="deleteUnit(item.id)" class="delete-icon">❌</span>
   </mat-list-item>
 </mat-list>

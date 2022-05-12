@@ -57,6 +57,10 @@ export class ClientListService {
     this.toast.success('Dodano nowego klienta', 'Klient dodany');
   }
 
+  deleteUser(id: string) {
+    this.db.doc<User>(`users/${id}`).delete();
+  }
+
   public getClients() {
     return this.db
       .collection<User>('users')

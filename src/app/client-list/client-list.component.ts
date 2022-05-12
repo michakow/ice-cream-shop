@@ -33,4 +33,8 @@ export class ClientListComponent implements OnInit {
     this.addClientForm.controls['firstName'].setValue(' ');
     this.addClientForm.controls['lastName'].setValue(' ');
   }
+
+  deleteUser(id: string) {
+    this.clientListService.deleteUser(id);
+  }
 }

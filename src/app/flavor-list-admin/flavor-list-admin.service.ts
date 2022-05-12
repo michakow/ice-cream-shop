@@ -40,6 +40,10 @@ export class FlavorListAdminService {
     this.toast.success('Dodano nowy smak', 'Smak dodany');
   }
 
+  deleteFlavor(id: string) {
+    this.db.doc<Flavor>(`icecreams/${id}`).delete();
+  }
+
   getFlavors() {
     return this.db
       .collection<Flavor>('icecreams')
